@@ -12,6 +12,20 @@ def index():
 def results():
     userdata = dict(request.form)
     print(userdata)
-    nickname = userdata['nickname']
-    output = model.flipit(nickname)
-    return render_template("results.html", output = output)
+    choice = userdata['choice']
+    print(choice)
+    print(type(choice))
+    genre = ""
+    game = ""
+    if choice == '1':
+        game = "Witcher 3"
+        genre = "RPG"
+    if choice == '2':
+        game = "FIFA"
+        genre = "Sports"
+    if choice == '3':
+        game = "CoD"
+        genre = "MMO"
+    genre = model.concatenate(genre)
+    print(game)
+    return render_template("results.html", game = game, genre = genre)
